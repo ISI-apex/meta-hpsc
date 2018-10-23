@@ -3,13 +3,14 @@ XILINX_RELEASE_VERSION ?= ""
 LINUX_VERSION_EXTENSION ?= "-xilinx-${XILINX_RELEASE_VERSION}"
 PV = "${LINUX_VERSION}${LINUX_VERSION_EXTENSION}+git${SRCPV}"
 
-# Sources, by default allow for the use of SRCREV pointing to orphaned tags/commits
-KBRANCH ?= ""
-SRCBRANCHARG = "${@['nobranch=1', 'branch=${KBRANCH}'][d.getVar('KBRANCH', True) != '']}"
+# KD- Added this flag to prevent possible problems when integrating our linux repo
+KERNEL_VERSION_SANITY_SKIP="1"
 
 FILESOVERRIDES_append = ":${XILINX_RELEASE_VERSION}"
-KERNELURI ?= "git://github.com/Xilinx/linux-xlnx.git;protocol=https"
-SRC_URI = "${KERNELURI};${SRCBRANCHARG}"
+
+# If SRCREV equals '${AUTOREV}', then specify 'branch=hpsc'
+# in SRC_URI, else specify 'nobranch=1'
+SRC_URI = "${@ "git://github.com/ISI-apex/linux-hpsc.git;protocol=git;branch=hpsc" if (d.getVar('SRCREV') == '${AUTOREV}') else "git://github.com/ISI-apex/linux-hpsc.git;protocol=git;nobranch=1" }"
 
 SRCREV_machine ?= "${SRCREV}"
 
@@ -21,6 +22,15 @@ DESCRIPTION = "Xilinx Kernel"
 # Force the use of the KBUILD_DEFCONFIG even if some other defconfig was generated in the ${WORKDIR}
 do_kernel_metadata_prepend () {
 	[ -n "${KBUILD_DEFCONFIG}" ] && [ -e ${WORKDIR}/defconfig ] && rm ${WORKDIR}/defconfig
+}
+
+# KD- Included my own do_kernel_checkout() method to avoid an error reporting "pathspec 'master' did not match any file(s) known to git."
+do_kernel_checkout() {
+	set +e
+	rm -rf ${S}
+	mv ${WORKDIR}/git ${S}
+	cd ${S}
+	git checkout -f ${SRCREV}
 }
 
 # Default to be only compatible with specific machines or soc families

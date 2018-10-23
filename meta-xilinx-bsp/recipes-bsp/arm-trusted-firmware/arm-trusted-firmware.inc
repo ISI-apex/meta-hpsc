@@ -12,10 +12,9 @@ DEPENDS += "u-boot-mkimage-native"
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/build"
 
-BRANCH ?= "master"
-REPO ?= "git://github.com/Xilinx/arm-trusted-firmware.git;protocol=https"
-BRANCHARG = "${@['nobranch=1', 'branch=${BRANCH}'][d.getVar('BRANCH', True) != '']}"
-SRC_URI = "${REPO};${BRANCHARG}"
+# If SRCREV equals '${AUTOREV}', then specify 'branch=hpsc'
+# in SRC_URI, else specify 'nobranch=1'
+SRC_URI = "${@ "git://github.com/ISI-apex/arm-trusted-firmware.git;protocol=git;branch=hpsc" if (d.getVar('SRCREV') == '${AUTOREV}') else "git://github.com/ISI-apex/arm-trusted-firmware.git;protocol=git;nobranch=1" }"
 
 ATF_BASE_NAME ?= "${PN}-${PKGE}-${PKGV}-${PKGR}-${DATETIME}"
 ATF_BASE_NAME[vardepsexclude] = "DATETIME"

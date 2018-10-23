@@ -2,10 +2,9 @@ require recipes-bsp/u-boot/u-boot.inc
 
 DEPENDS += "bc-native dtc-native"
 
-UBOOTURI ?= "git://github.com/Xilinx/u-boot-xlnx.git;protocol=https"
-UBRANCH ?= "master"
-UBRANCHARG = "${@['nobranch=1', 'branch=${UBRANCH}'][d.getVar('UBRANCH', True) != '']}"
-SRC_URI = "${UBOOTURI};${UBRANCHARG}"
+# If SRCREV equals '${AUTOREV}', then specify 'branch=hpsc'
+# in SRC_URI, else specify 'nobranch=1'
+SRC_URI = "${@ "git://github.com/ISI-apex/u-boot.git;protocol=git;branch=hpsc" if (d.getVar('SRCREV') == '${AUTOREV}') else "git://github.com/ISI-apex/u-boot.git;protocol=git;nobranch=1" }"
 
 S = "${WORKDIR}/git"
 

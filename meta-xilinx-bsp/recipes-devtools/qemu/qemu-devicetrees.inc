@@ -9,11 +9,11 @@ LIC_FILES_CHKSUM = "file://Makefile;beginline=1;endline=27;md5=7348b6cbcae69912c
 
 PV = "xilinx-${XILINX_RELEASE_VERSION}+git${SRCPV}"
 
-BRANCH ?= ""
-REPO ?= "git://github.com/Xilinx/qemu-devicetrees.git;protocol=https"
-
-BRANCHARG = "${@['nobranch=1', 'branch=${BRANCH}'][d.getVar('BRANCH', True) != '']}"
-SRC_URI = "${REPO};${BRANCHARG}"
+# If SRCREV equals '${AUTOREV}', then specify 'branch=hpsc'
+# in SRC_URI, else specify 'nobranch=1'
+SRC_URI = "${@ "git://github.com/ISI-apex/qemu-devicetrees.git;protocol=git;branch=hpsc" if\
+ (d.getVar('SRCREV') == '${AUTOREV}') else "git://github.com/ISI-apex/qemu-devicetrees.git;\
+protocol=git;nobranch=1" }"
 
 S = "${WORKDIR}/git"
 
@@ -26,11 +26,6 @@ do_deploy() {
 	# single-arch dtbs
 	for DTS_FILE in ${S}/LATEST/SINGLE_ARCH/*.dtb; do
 		install -Dm 0644 $DTS_FILE ${DEPLOYDIR}/qemu-hw-devicetrees/$(basename $DTS_FILE .dtb).dtb
-	done
-
-	# multi-arch dtbs
-	for DTS_FILE in ${S}/LATEST/MULTI_ARCH/*.dtb; do
-		install -Dm 0644 $DTS_FILE ${DEPLOYDIR}/qemu-hw-devicetrees/multiarch/$(basename $DTS_FILE .dtb).dtb
 	done
 }
 

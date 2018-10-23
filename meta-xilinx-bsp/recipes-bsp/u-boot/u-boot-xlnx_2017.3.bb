@@ -2,7 +2,11 @@ include u-boot-xlnx.inc
 include u-boot-spl-zynq-init.inc
 
 XILINX_RELEASE_VERSION = "v2017.3"
-SRCREV ?= "da811c4511ef9caeb95f9a22fe49d38bd8e56ded"
+
+# SRCREV can be either a tag (e.g. 'hpsc-0.9'), a commit hash,
+# or '${AUTOREV}' if the user wants the head of the hpsc branch
+SRCREV = "${SRCREV_u_boot}"
+
 PV = "v2017.01-xilinx-${XILINX_RELEASE_VERSION}+git${SRCPV}"
 
 SRC_URI_append = " \
@@ -14,11 +18,7 @@ LIC_FILES_CHKSUM = "file://README;beginline=1;endline=6;md5=157ab8408beab40cd8ce
 
 # u-boot-xlnx has support for these
 HAS_PLATFORM_INIT ?= " \
-		zynq_microzed_config \
-		zynq_zed_config \
-		zynq_zc702_config \
-		zynq_zc706_config \
-		zynq_zybo_config \
 		xilinx_zynqmp_zcu102_rev1_0_config \
+		hpsc_multi_config \
 		"
 

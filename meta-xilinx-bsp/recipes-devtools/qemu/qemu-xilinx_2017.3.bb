@@ -2,4 +2,7 @@ require qemu-xilinx.inc
 
 XILINX_RELEASE_VERSION = "v2017.3"
 XILINX_QEMU_VERSION = "v2.8.1"
-SRCREV ?= "8f8c89b18f6e4523099e41d81769fc534064b8de"
+
+# SRCREV can be either a tag (e.g. 'hpsc-0.9'), a commit hash,
+# or '${AUTOREV}' if the user wants the head of the hpsc branch
+SRCREV = "${SRCREV_qemu}"

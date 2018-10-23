@@ -1,4 +1,4 @@
-QEMU_TARGETS = "aarch64 arm microblaze microblazeel"
+QEMU_TARGETS = "aarch64"
 
 require recipes-devtools/qemu/qemu.inc
 
@@ -11,37 +11,17 @@ LIC_FILES_CHKSUM = " \
 		"
 
 PV = "${XILINX_QEMU_VERSION}-xilinx-${XILINX_RELEASE_VERSION}+git${SRCPV}"
-BRANCH ?= ""
-REPO ?= "git://github.com/Xilinx/qemu.git;protocol=https"
 
-BRANCHARG = "${@['nobranch=1', 'branch=${BRANCH}'][d.getVar('BRANCH', True) != '']}"
-SRC_URI = "${REPO};${BRANCHARG}"
+# If SRCREV equals '${AUTOREV}', then specify 'branch=hpsc'
+# in SRC_URI, else specify 'nobranch=1'
+SRC_URI = "${@ "git://github.com/ISI-apex/qemu.git;protocol=git;branch=hpsc" if (d.getVar('SRCREV') == '${AUTOREV}') else "git://github.com/ISI-apex/qemu.git;protocol=git;nobranch=1" }"
 
 S = "${WORKDIR}/git"
-
-# Disable KVM completely
-PACKAGECONFIG_remove = "kvm"
-
-# Enable libgcrypt
-PACKAGECONFIG_append = " gcrypt"
 
 DISABLE_STATIC_pn-${PN} = ""
 
 PTEST_ENABLED = ""
 
-# append a suffix dir, to allow multiple versions of QEMU to be installed
-EXTRA_OECONF_append = " \
-		--bindir=${bindir}/qemu-xilinx \
-		--libexecdir=${libexecdir}/qemu-xilinx \
-		"
-
-do_configure_prepend() {
-	# rewrite usage of 'libgcrypt-config' with 'pkg-config libgcrypt'
-	sed -r -i 's/libgcrypt-config(\s*--)/pkg-config libgcrypt\1/g' ${S}/configure
+do_configure() {
+	${S}/configure --target-list="aarch64-softmmu" --enable-fdt --disable-kvm --disable-xen 
 }
-
-do_install_append() {
-	# Prevent QA warnings about installed ${localstatedir}/run
-	if [ -d ${D}${localstatedir}/run ]; then rmdir ${D}${localstatedir}/run; fi
-}
-

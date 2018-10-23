@@ -3,10 +3,9 @@
 #
 # To enable this recipe, set PREFERRED_PROVIDER_virtual/kernel = "linux-xlnx-dev"
 
-KBRANCH ?= "master"
-
-# Use the SRCREV for the last tagged revision of linux-xlnx.
-SRCREV ?= '${@oe.utils.conditional("PREFERRED_PROVIDER_virtual/kernel", "linux-xlnx-dev", "${AUTOREV}", "84fb0cc65aae5970471cbc54b0c89009b9b904af", d)}'
+# SRCREV can be either a tag (e.g. 'hpsc-0.9'), a commit hash,
+# or '${AUTOREV}' if the user wants the head of the hpsc branch
+SRCREV = "${SRCREV_linux_hpsc}"
 
 # skip version sanity, because the version moves with AUTOREV
 KERNEL_VERSION_SANITY_SKIP = "1"

@@ -9,8 +9,8 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
 SRC_URI = "file://qemu-system-aarch64-multiarch"
 
-do_configure[noexec] = "1"
-do_compile[noexec] = "1"
+# do_configure[noexec] = "1"
+# do_compile[noexec] = "1"
 
 SYSROOT_DIRS += "${bindir}/qemu-xilinx"
 
