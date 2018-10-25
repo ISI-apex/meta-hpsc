@@ -24,15 +24,6 @@ do_kernel_metadata_prepend () {
 	[ -n "${KBUILD_DEFCONFIG}" ] && [ -e ${WORKDIR}/defconfig ] && rm ${WORKDIR}/defconfig
 }
 
-# KD- Included my own do_kernel_checkout() method to avoid an error reporting "pathspec 'master' did not match any file(s) known to git."
-do_kernel_checkout() {
-	set +e
-	rm -rf ${S}
-	mv ${WORKDIR}/git ${S}
-	cd ${S}
-	git checkout -f ${SRCREV}
-}
-
 # Default to be only compatible with specific machines or soc families
 COMPATIBLE_MACHINE ?= "^$"
 COMPATIBLE_MACHINE_zynq = ".*"
