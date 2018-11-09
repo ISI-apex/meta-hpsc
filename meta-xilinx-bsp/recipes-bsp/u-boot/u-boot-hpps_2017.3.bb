@@ -1,4 +1,4 @@
-include u-boot-xlnx.inc
+include u-boot-hpps.inc
 
 XILINX_RELEASE_VERSION = "v2017.3"
 
