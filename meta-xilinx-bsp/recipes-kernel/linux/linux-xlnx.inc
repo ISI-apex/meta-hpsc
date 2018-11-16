@@ -19,6 +19,16 @@ require linux-microblaze.inc
 
 DESCRIPTION = "Xilinx Kernel"
 
+do_configure() {
+        cp -r ${S}/* ${B}
+        oe_runmake hpsc_defconfig ARCH=arm64 -C ${B}
+}
+
+do_compile() {
+	export LDFLAGS=
+        oe_runmake ARCH=arm64 -C ${B}
+}
+
 # Force the use of the KBUILD_DEFCONFIG even if some other defconfig was generated in the ${WORKDIR}
 do_kernel_metadata_prepend () {
 	[ -n "${KBUILD_DEFCONFIG}" ] && [ -e ${WORKDIR}/defconfig ] && rm ${WORKDIR}/defconfig
