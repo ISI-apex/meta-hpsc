@@ -22,28 +22,19 @@ ATF_BASE_NAME[vardepsexclude] = "DATETIME"
 COMPATIBLE_MACHINE = "zynqmp"
 PLATFORM_zynqmp = "zynqmp"
 
-# requires CROSS_COMPILE set by hand as there is no configure script
-export CROSS_COMPILE="${TARGET_PREFIX}"
-
-# Let the Makefile handle setting up the CFLAGS and LDFLAGS as it is a standalone application
-CFLAGS[unexport] = "1"
+# don't export LDFLAGS
 LDFLAGS[unexport] = "1"
-AS[unexport] = "1"
-LD[unexport] = "1"
 
 do_configure() {
-	:
+	cp -r ${S}/* ${B}
 }
 
 do_compile() {
-	oe_runmake -C ${S} BUILD_BASE=${B} PLAT=${PLATFORM} RESET_TO_BL31=1 bl31
+	export CROSS_COMPILE=aarch64-poky-linux-
+	oe_runmake PLAT=hpsc bl31
 }
 
-do_install() {
-	:
-}
-
-OUTPUT_DIR = "${B}/${PLATFORM}/release"
+OUTPUT_DIR = "${B}/build/hpsc/release"
 
 do_deploy() {
 	install -d ${DEPLOYDIR}
@@ -51,13 +42,6 @@ do_deploy() {
 	ln -sf ${ATF_BASE_NAME}.elf ${DEPLOYDIR}/${PN}.elf
 	install -m 0644 ${OUTPUT_DIR}/bl31.bin ${DEPLOYDIR}/${ATF_BASE_NAME}.bin
 	ln -sf ${ATF_BASE_NAME}.bin ${DEPLOYDIR}/${PN}.bin
-
-	# Get the entry point address from the elf.
-	BL31_BASE_ADDR=$(${READELF} -h ${OUTPUT_DIR}/bl31/bl31.elf | egrep -m 1 -i "entry point.*?0x" | sed -r 's/.*?(0x.*?)/\1/g')
-	mkimage -A arm64 -O linux -T kernel -C none \
-		-a $BL31_BASE_ADDR -e $BL31_BASE_ADDR \
-		-d ${OUTPUT_DIR}/bl31.bin ${DEPLOYDIR}/${ATF_BASE_NAME}.ub
-	ln -sf ${ATF_BASE_NAME}.ub ${DEPLOYDIR}/${PN}.ub
-	ln -sf ${ATF_BASE_NAME}.ub ${DEPLOYDIR}/atf-uboot.ub
 }
+
 addtask deploy before do_build after do_compile

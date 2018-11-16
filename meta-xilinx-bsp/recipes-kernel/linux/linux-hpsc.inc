@@ -17,6 +17,9 @@ SRC_URI = "${@ "git://github.com/ISI-apex/linux-hpsc.git;protocol=git;branch=hps
 
 SRCREV_machine ?= "${SRCREV}"
 
+# don't export LDFLAGS
+LDFLAGS[unexport] = "1"
+
 require recipes-kernel/linux/linux-yocto.inc
 require linux-microblaze.inc
 
@@ -28,7 +31,6 @@ do_configure() {
 }
 
 do_compile() {
-	export LDFLAGS=
         oe_runmake ARCH=arm64 -C ${B}
 }
 
