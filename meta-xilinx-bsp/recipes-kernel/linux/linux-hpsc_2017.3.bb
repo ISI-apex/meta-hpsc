@@ -5,4 +5,4 @@ XILINX_RELEASE_VERSION = "v2017.3"
 # or '${AUTOREV}' if the user wants the head of the hpsc branch
 SRCREV = "${SRCREV_linux_hpsc}"
 
-include linux-xlnx.inc
+include linux-hpsc.inc

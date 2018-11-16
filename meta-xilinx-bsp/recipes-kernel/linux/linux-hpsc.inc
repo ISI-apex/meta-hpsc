@@ -3,6 +3,9 @@ XILINX_RELEASE_VERSION ?= ""
 LINUX_VERSION_EXTENSION ?= "-xilinx-${XILINX_RELEASE_VERSION}"
 PV = "${LINUX_VERSION}${LINUX_VERSION_EXTENSION}+git${SRCPV}"
 
+LICENSE = "GPLv2"
+LIC_FILES_CHKSUM = "file://COPYING;md5=441c28d2cf86e15a37fa47e15a72fbac"
+
 # KD- Added this flag to prevent possible problems when integrating our linux repo
 KERNEL_VERSION_SANITY_SKIP="1"
 
@@ -52,4 +55,3 @@ SRC_URI_append = " file://xilinx-kmeta;type=kmeta;name=xilinx-kmeta;destsuffix=x
 
 # MicroBlaze BSP fragments
 KERNEL_FEATURES_append_kc705-microblazeel = " bsp/kc705-microblazeel/kc705-microblazeel.scc"
-
