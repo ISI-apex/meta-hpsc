@@ -1,10 +1,27 @@
-include u-boot-hpps.inc
+require recipes-bsp/u-boot/u-boot.inc
 
-XILINX_RELEASE_VERSION = "v2017.3"
+DEPENDS += "bc-native dtc-native"
 
 # SRCREV can be either a tag (e.g. 'hpsc-0.9'), a commit hash,
 # or '${AUTOREV}' if the user wants the head of the hpsc branch
 SRCREV = "${SRCREV_u_boot}"
+S = "${WORKDIR}/git"
+
+# If SRCREV equals '${AUTOREV}', then specify 'branch=hpsc'
+# in SRC_URI, else specify 'nobranch=1'
+SRC_URI = "${@ "git://github.com/ISI-apex/u-boot.git;protocol=git;branch=hpsc" if (d.getVar('SRCREV') == '${AUTOREV}') else "git://github.com/ISI-apex/u-boot.git;protocol=git;nobranch=1" }"
+
+do_configure() {
+	cp -r ${S}/* ${B}
+	oe_runmake hpsc_hpps_config -C ${B}
+}
+
+do_compile() {
+	oe_runmake -C ${B}
+	cp ${B}/u-boot ${B}/HPPS-u-boot
+}
+
+XILINX_RELEASE_VERSION = "v2017.3"
 
 PV = "v2017.01-xilinx-${XILINX_RELEASE_VERSION}+git${SRCPV}"
 
@@ -16,4 +33,3 @@ HAS_PLATFORM_INIT ?= " \
 		xilinx_zynqmp_zcu102_rev1_0_config \
 		hpsc_multi_config \
 		"
-

@@ -11,10 +11,6 @@ KERNEL_VERSION_SANITY_SKIP="1"
 
 FILESOVERRIDES_append = ":${XILINX_RELEASE_VERSION}"
 
-# If SRCREV equals '${AUTOREV}', then specify 'branch=hpsc'
-# in SRC_URI, else specify 'nobranch=1'
-SRC_URI = "${@ "git://github.com/ISI-apex/linux-hpsc.git;protocol=git;branch=hpsc" if (d.getVar('SRCREV') == '${AUTOREV}') else "git://github.com/ISI-apex/linux-hpsc.git;protocol=git;nobranch=1" }"
-
 SRCREV_machine ?= "${SRCREV}"
 
 # don't export LDFLAGS
