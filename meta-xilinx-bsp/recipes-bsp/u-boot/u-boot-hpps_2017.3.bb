@@ -2,7 +2,7 @@ require recipes-bsp/u-boot/u-boot.inc
 
 DEPENDS += "bc-native dtc-native"
 
-SRCREV_u_boot ?= "861c8057464a1429152f6f5e2adc6e22606dd6aa"
+SRCREV_u_boot ?= "61e400add9ce27c029cd7c2b8f7438bc92ee0980"
 SRCREV = "${SRCREV_u_boot}"
 S = "${WORKDIR}/git"
 
