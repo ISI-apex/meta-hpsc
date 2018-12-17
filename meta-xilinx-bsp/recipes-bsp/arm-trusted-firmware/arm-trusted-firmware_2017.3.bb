@@ -12,13 +12,10 @@ DEPENDS += "u-boot-mkimage-native"
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/build"
 
-# SRCREV can be either a tag (e.g. 'hpsc-0.9'), a commit hash,
-# or '${AUTOREV}' if the user wants the head of the hpsc branch
+SRCREV_atf ?= "9c83e93aec5c6bb3b0fd061fbf6bdfe37f49d485"
 SRCREV = "${SRCREV_atf}"
 
-# If SRCREV equals '${AUTOREV}', then specify 'branch=hpsc'
-# in SRC_URI, else specify 'nobranch=1'
-SRC_URI = "${@ "git://github.com/ISI-apex/arm-trusted-firmware.git;protocol=git;branch=hpsc" if (d.getVar('SRCREV') == '${AUTOREV}') else "git://github.com/ISI-apex/arm-trusted-firmware.git;protocol=git;nobranch=1" }"
+SRC_URI = "git://github.com/ISI-apex/arm-trusted-firmware.git;protocol=git;branch=hpsc"
 
 ATF_BASE_NAME ?= "${PN}-${PKGE}-${PKGV}-${PKGR}-${DATETIME}"
 ATF_BASE_NAME[vardepsexclude] = "DATETIME"

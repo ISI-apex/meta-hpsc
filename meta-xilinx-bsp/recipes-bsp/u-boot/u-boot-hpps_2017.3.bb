@@ -2,14 +2,11 @@ require recipes-bsp/u-boot/u-boot.inc
 
 DEPENDS += "bc-native dtc-native"
 
-# SRCREV can be either a tag (e.g. 'hpsc-0.9'), a commit hash,
-# or '${AUTOREV}' if the user wants the head of the hpsc branch
+SRCREV_u_boot ?= "861c8057464a1429152f6f5e2adc6e22606dd6aa"
 SRCREV = "${SRCREV_u_boot}"
 S = "${WORKDIR}/git"
 
-# If SRCREV equals '${AUTOREV}', then specify 'branch=hpsc'
-# in SRC_URI, else specify 'nobranch=1'
-SRC_URI = "${@ "git://github.com/ISI-apex/u-boot.git;protocol=git;branch=hpsc" if (d.getVar('SRCREV') == '${AUTOREV}') else "git://github.com/ISI-apex/u-boot.git;protocol=git;nobranch=1" }"
+SRC_URI = "git://github.com/ISI-apex/u-boot.git;protocol=git;branch=hpsc"
 
 do_configure() {
 	cp -r ${S}/* ${B}
