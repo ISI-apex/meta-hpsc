@@ -17,9 +17,8 @@ SRCREV_machine ?= "${SRCREV}"
 LDFLAGS[unexport] = "1"
 
 require recipes-kernel/linux/linux-yocto.inc
-require linux-microblaze.inc
 
-DESCRIPTION = "Xilinx Kernel"
+DESCRIPTION = "HPSC Kernel"
 
 do_configure() {
         cp -r ${S}/* ${B}
@@ -35,21 +34,6 @@ do_kernel_metadata_prepend () {
 	[ -n "${KBUILD_DEFCONFIG}" ] && [ -e ${WORKDIR}/defconfig ] && rm ${WORKDIR}/defconfig
 }
 
-# Default to be only compatible with specific machines or soc families
-COMPATIBLE_MACHINE ?= "^$"
-COMPATIBLE_MACHINE_zynq = ".*"
-COMPATIBLE_MACHINE_zynqmp = ".*"
-COMPATIBLE_MACHINE_kc705-microblazeel = ".*"
-
 # Use DEFCONFIGs for configuring linux-xlnx kernels
 KCONFIG_MODE ?= "alldefconfig"
 KBUILD_DEFCONFIG_zynqmp = "xilinx_zynqmp_defconfig"
-KBUILD_DEFCONFIG_zynq = "xilinx_zynq_defconfig"
-KBUILD_DEFCONFIG_microblaze = "mmu_defconfig"
-
-# Add meta-xilinx kmeta, used for MicroBlaze BSP fragments
-FILESEXTRAPATHS_prepend := "${THISDIR}:"
-SRC_URI_append = " file://xilinx-kmeta;type=kmeta;name=xilinx-kmeta;destsuffix=xilinx-kmeta"
-
-# MicroBlaze BSP fragments
-KERNEL_FEATURES_append_kc705-microblazeel = " bsp/kc705-microblazeel/kc705-microblazeel.scc"
