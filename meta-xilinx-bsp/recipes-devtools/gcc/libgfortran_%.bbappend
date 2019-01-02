@@ -1,7 +1,5 @@
 # Override functions - remove once we update to poky > 2.4.3
 
-FORTRAN_forcevariable = ",fortran"
-
 do_configure () {
 	for target in libbacktrace libgfortran
 	do
