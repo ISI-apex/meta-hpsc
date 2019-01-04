@@ -36,4 +36,4 @@ do_kernel_metadata_prepend () {
 
 # Use DEFCONFIGs for configuring linux-xlnx kernels
 KCONFIG_MODE ?= "alldefconfig"
-KBUILD_DEFCONFIG_zynqmp = "xilinx_zynqmp_defconfig"
+KBUILD_DEFCONFIG_hpsc-chiplet = "hpsc_defconfig"

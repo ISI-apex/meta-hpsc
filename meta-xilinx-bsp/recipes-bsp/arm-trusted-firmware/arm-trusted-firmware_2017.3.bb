@@ -20,8 +20,7 @@ SRC_URI = "git://github.com/ISI-apex/arm-trusted-firmware.git;protocol=git;branc
 ATF_BASE_NAME ?= "${PN}-${PKGE}-${PKGV}-${PKGR}-${DATETIME}"
 ATF_BASE_NAME[vardepsexclude] = "DATETIME"
 
-COMPATIBLE_MACHINE = "zynqmp"
-PLATFORM_zynqmp = "zynqmp"
+COMPATIBLE_MACHINE = "hpsc-chiplet"
 
 # don't export LDFLAGS
 LDFLAGS[unexport] = "1"
