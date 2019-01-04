@@ -18,15 +18,11 @@ do_compile() {
 	cp ${B}/u-boot ${B}/HPPS-u-boot
 }
 
-XILINX_RELEASE_VERSION = "v2017.3"
-
-PV = "v2017.01-xilinx-${XILINX_RELEASE_VERSION}+git${SRCPV}"
+PV = "2018.11-rc1-hpsc+git${SRCPV}"
 
 LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://README;beginline=1;endline=6;md5=37495cdcff8cd78890dc65d37099bc38"
 
-# u-boot-xlnx has support for these
 HAS_PLATFORM_INIT ?= " \
-		xilinx_zynqmp_zcu102_rev1_0_config \
 		hpsc_multi_config \
 		"

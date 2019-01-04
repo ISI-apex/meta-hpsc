@@ -46,6 +46,4 @@ do_deploy() {
 
 addtask deploy before do_build after do_compile
 
-XILINX_RELEASE_VERSION = "v2017.3"
-
-PV = "1.3-xilinx-${XILINX_RELEASE_VERSION}+git${SRCPV}"
+PV = "1.3-hpsc+git${SRCPV}"
