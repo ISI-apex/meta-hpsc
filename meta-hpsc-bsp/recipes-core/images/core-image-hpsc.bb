@@ -13,6 +13,8 @@ HPSC_IMAGE_INSTALL ?= " gdb gdbserver \
                         libstdc++ \
                         mpich \
                         mtd-utils \
+			mtd-utils-ubifs \
+			mtd-utils-misc \
                         openssh openssh-sftp-server \
                         python-core python-numpy \
                         util-linux \
