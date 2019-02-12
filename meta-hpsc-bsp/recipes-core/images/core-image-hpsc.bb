@@ -16,6 +16,7 @@ HPSC_IMAGE_INSTALL ?= " gdb gdbserver \
 			mtd-utils-ubifs \
 			mtd-utils-misc \
                         openssh openssh-sftp-server \
+			perf \
                         python-core python-numpy \
                         util-linux \
                         watchdog \
