@@ -2,10 +2,9 @@ require recipes-bsp/u-boot/u-boot.inc
 
 DEPENDS += "bc-native dtc-native flex-native bison-native"
 
-SRCREV_u_boot ?= "87b089a585f4e9324c0fb8dfb0cb5d950a88cf26"
-SRCREV = "${SRCREV_u_boot}"
 S = "${WORKDIR}/git"
 
+SRCREV = "87b089a585f4e9324c0fb8dfb0cb5d950a88cf26"
 SRC_URI = "git://github.com/ISI-apex/u-boot.git;protocol=git;branch=hpsc"
 
 do_configure() {
