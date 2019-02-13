@@ -5,7 +5,7 @@ SRC_URI = "git://github.com/ISI-apex/linux-hpsc.git;protocol=git;branch=hpsc"
 
 LINUX_VERSION ?= "4.14.0"
 
-SRCREV_hpsc-chiplet = "9926902d435a4dee3430396d4bffbabd66cb7c03"
+SRCREV_hpsc-chiplet = "7246a713da8fcdfe7ca24213f220c6aa00629c4a"
 
 # skip version sanity, because the version moves with AUTOREV
 KERNEL_VERSION_SANITY_SKIP = "1"
