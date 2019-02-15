@@ -12,7 +12,7 @@ DEPENDS += "u-boot-mkimage-native"
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/build"
 
-SRCREV = "278b8420324d82fecb37252003c753abfc31a563"
+SRCREV = "5c1a87f3b606ac2bc60b3c9d243c6c15ba55a967"
 SRC_URI = "git://github.com/ISI-apex/arm-trusted-firmware.git;protocol=git;branch=hpsc"
 
 ATF_BASE_NAME ?= "${PN}-${PKGE}-${PKGV}-${PKGR}-${DATETIME}"
