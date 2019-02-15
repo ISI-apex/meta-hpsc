@@ -4,7 +4,7 @@ DEPENDS += "bc-native dtc-native flex-native bison-native"
 
 S = "${WORKDIR}/git"
 
-SRCREV = "997fe6277cc5e0ff0c428b9e1e16af34d715db59"
+SRCREV = "5da3da6c33ef910060a1ecfa3789836ebef2e133"
 SRC_URI = "git://github.com/ISI-apex/u-boot.git;protocol=git;branch=hpsc"
 
 do_configure() {
