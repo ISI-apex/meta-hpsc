@@ -1,0 +1,159 @@
+From 5cb54c1f55045fc4a6a37ac12c32cfcd6a19aaff Mon Sep 17 00:00:00 2001
+From: Connor Imes <cimes@isi.edu>
+Date: Mon, 25 Feb 2019 09:23:10 -0500
+Subject: [PATCH] config: add suite.def
+
+---
+ NPB3.3-OMP/config/suite.def | 75 +++++++++++++++++++++++++++++++++++++++++++++
+ NPB3.3-SER/config/suite.def | 60 ++++++++++++++++++++++++++++++++++++
+ 2 files changed, 135 insertions(+)
+ create mode 100644 NPB3.3-OMP/config/suite.def
+ create mode 100644 NPB3.3-SER/config/suite.def
+
+diff --git a/NPB3.3-OMP/config/suite.def b/NPB3.3-OMP/config/suite.def
+new file mode 100644
+index 0000000..c21b91f
+--- /dev/null
++++ b/NPB3.3-OMP/config/suite.def
+@@ -0,0 +1,75 @@
++# config/suite.def
++# This file is used to build several benchmarks with a single command. 
++# Typing "make suite" in the main directory will build all the benchmarks
++# specified in this file. 
++# Each line of this file contains a benchmark name and the class.
++# The name is one of "cg", "is", "dc", "ep", mg", "ft", "sp",
++#  "bt", "lu", and "ua". 
++# The class is one of "S", "W", "A" through "E" 
++# (except that no classes C,D,E for DC and no class E for IS and UA).
++# No blank lines. 
++ft	S
++ft	W
++ft	A
++ft	B
++ft	C
++ft	D
++ft	E
++mg	S
++mg	W
++mg	A
++mg	B
++mg	C
++mg	D
++mg	E
++sp	S
++sp	W
++sp	A
++sp	B
++sp	C
++sp	D
++sp	E
++lu	S
++lu	W
++lu	A
++lu	B
++lu	C
++lu	D
++lu	E
++bt	S
++bt	W
++bt	A
++bt	B
++bt	C
++bt	D
++bt	E
++is	S
++is	W
++is	A
++is	B
++is	C
++is	D
++ep	S
++ep	W
++ep	A
++ep	B
++ep	C
++ep	D
++ep	E
++cg	S
++cg	W
++cg	A
++cg	B
++cg	C
++cg	D
++cg	E
++ua	S
++ua	W
++ua	A
++ua	B
++ua	C
++ua	D
++dc	S
++dc	W
++dc	A
++dc	B
+diff --git a/NPB3.3-SER/config/suite.def b/NPB3.3-SER/config/suite.def
+new file mode 100644
+index 0000000..b59af63
+--- /dev/null
++++ b/NPB3.3-SER/config/suite.def
+@@ -0,0 +1,60 @@
++# config/suite.def
++# This file is used to build several benchmarks with a single command. 
++# Typing "make suite" in the main directory will build all the benchmarks
++# specified in this file. 
++# Each line of this file contains a benchmark name, class.
++# The name is one of "cg", "is", "dc", "ep", mg", "ft", "sp",
++#  "bt", "lu", and "ua". 
++# The class is one of "S", "W", "A", "B", and "C"
++# (classes D and E are defined for a number of benchmarks, but they
++#  are likely not practical to run in serial. See README.install).
++# No blank lines. 
++ft	S
++ft	W
++ft	A
++ft	B
++ft	C
++mg	S
++mg	W
++mg	A
++mg	B
++mg	C
++sp	S
++sp	W
++sp	A
++sp	B
++sp	C
++lu	S
++lu	W
++lu	A
++lu	B
++lu	C
++bt	S
++bt	W
++bt	A
++bt	B
++bt	C
++is	S
++is	W
++is	A
++is	B
++is	C
++ep	S
++ep	W
++ep	A
++ep	B
++ep	C
++cg	S
++cg	W
++cg	A
++cg	B
++cg	C
++ua	S
++ua	W
++ua	A
++ua	B
++ua	C
++dc	S
++dc	W
++dc	A
++dc	B

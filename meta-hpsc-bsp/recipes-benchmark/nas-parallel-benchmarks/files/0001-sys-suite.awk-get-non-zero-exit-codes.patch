@@ -1,0 +1,44 @@
+From 720a0e65c98f25b208a7dbbd0e3bd63aab1f809c Mon Sep 17 00:00:00 2001
+From: Connor Imes <cimes@isi.edu>
+Date: Mon, 25 Feb 2019 09:21:58 -0500
+Subject: [PATCH] sys: suite.awk: get non-zero exit codes
+
+---
+ NPB3.3-OMP/sys/suite.awk | 4 ++--
+ NPB3.3-SER/sys/suite.awk | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/NPB3.3-OMP/sys/suite.awk b/NPB3.3-OMP/sys/suite.awk
+index 461adab..0c8962f 100644
+--- a/NPB3.3-OMP/sys/suite.awk
++++ b/NPB3.3-OMP/sys/suite.awk
+@@ -1,10 +1,10 @@
+ BEGIN { SMAKE = "make" } {
+   if ($1 !~ /^#/ &&  NF > 1) {
+-    printf "cd `echo %s|tr '[a-z]' '[A-Z]'`; %s clean;", $1, SMAKE;
++    printf "cd `echo %s|tr '[a-z]' '[A-Z]'` && %s clean && ", $1, SMAKE;
+     printf "%s CLASS=%s", SMAKE, $2;
+     if (NF > 2) {
+       printf " VERSION=%s", $3;
+     }
+-    printf "; cd ..\n";
++    printf " && cd ..\n";
+   }
+ }
+diff --git a/NPB3.3-SER/sys/suite.awk b/NPB3.3-SER/sys/suite.awk
+index 461adab..0c8962f 100644
+--- a/NPB3.3-SER/sys/suite.awk
++++ b/NPB3.3-SER/sys/suite.awk
+@@ -1,10 +1,10 @@
+ BEGIN { SMAKE = "make" } {
+   if ($1 !~ /^#/ &&  NF > 1) {
+-    printf "cd `echo %s|tr '[a-z]' '[A-Z]'`; %s clean;", $1, SMAKE;
++    printf "cd `echo %s|tr '[a-z]' '[A-Z]'` && %s clean && ", $1, SMAKE;
+     printf "%s CLASS=%s", SMAKE, $2;
+     if (NF > 2) {
+       printf " VERSION=%s", $3;
+     }
+-    printf "; cd ..\n";
++    printf " && cd ..\n";
+   }
+ }

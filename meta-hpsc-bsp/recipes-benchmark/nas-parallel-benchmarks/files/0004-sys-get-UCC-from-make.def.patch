@@ -1,0 +1,28 @@
+From f0035c24f79610bd5b9a0ccfde72c41f221740b5 Mon Sep 17 00:00:00 2001
+From: Connor Imes <cimes@isi.edu>
+Date: Mon, 25 Feb 2019 09:24:59 -0500
+Subject: [PATCH] sys: get UCC from make.def
+
+---
+ NPB3.3-OMP/sys/Makefile | 1 -
+ NPB3.3-SER/sys/Makefile | 1 -
+ 2 files changed, 2 deletions(-)
+
+diff --git a/NPB3.3-OMP/sys/Makefile b/NPB3.3-OMP/sys/Makefile
+index b0bf4e9..62b2e0a 100644
+--- a/NPB3.3-OMP/sys/Makefile
++++ b/NPB3.3-OMP/sys/Makefile
+@@ -1,4 +1,3 @@
+-UCC = cc
+ include ../config/make.def
+ 
+ # Note that COMPILE is also defined in make.common and should
+diff --git a/NPB3.3-SER/sys/Makefile b/NPB3.3-SER/sys/Makefile
+index b0bf4e9..62b2e0a 100644
+--- a/NPB3.3-SER/sys/Makefile
++++ b/NPB3.3-SER/sys/Makefile
+@@ -1,4 +1,3 @@
+-UCC = cc
+ include ../config/make.def
+ 
+ # Note that COMPILE is also defined in make.common and should
