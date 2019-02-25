@@ -15,6 +15,7 @@ HPSC_IMAGE_INSTALL ?= " gdb gdbserver \
                         mtd-utils \
                         mtd-utils-ubifs \
                         mtd-utils-misc \
+                        nas-parallel-benchmarks \
                         openssh openssh-sftp-server \
                         perf \
                         python-core python-numpy \
