@@ -5,32 +5,29 @@ LIC_FILES_CHKSUM = "file://license.rst;md5=e927e02bca647e14efd87e9e914b2443"
 
 PROVIDES = "virtual/arm-trusted-firmware"
 
-inherit deploy
+PV = "1.3-hpsc+git${SRCPV}"
 
-DEPENDS += "u-boot-mkimage-native"
+SRC_URI = "git://github.com/ISI-apex/arm-trusted-firmware.git;protocol=git;branch=hpsc"
+SRCREV = "5c1a87f3b606ac2bc60b3c9d243c6c15ba55a967"
 
 S = "${WORKDIR}/git"
-B = "${WORKDIR}/build"
 
-SRCREV = "5c1a87f3b606ac2bc60b3c9d243c6c15ba55a967"
-SRC_URI = "git://github.com/ISI-apex/arm-trusted-firmware.git;protocol=git;branch=hpsc"
+inherit deploy
+
+COMPATIBLE_MACHINE = "hpsc-chiplet"
+PLATFORM_hpsc-chiplet = "hpsc"
+
+# Let the Makefile handle setting up the CFLAGS and LDFLAGS as it is a standalone application
+CFLAGS[unexport] = "1"
+LDFLAGS[unexport] = "1"
+AS[unexport] = "1"
+LD[unexport] = "1"
+
+export CROSS_COMPILE="${TARGET_PREFIX}"
+EXTRA_OEMAKE = "PLAT=${PLATFORM} bl31"
 
 ATF_BASE_NAME ?= "${PN}-${PKGE}-${PKGV}-${PKGR}-${DATETIME}"
 ATF_BASE_NAME[vardepsexclude] = "DATETIME"
-
-COMPATIBLE_MACHINE = "hpsc-chiplet"
-
-# don't export LDFLAGS
-LDFLAGS[unexport] = "1"
-
-do_configure() {
-	cp -r ${S}/* ${B}
-}
-
-do_compile() {
-	export CROSS_COMPILE=aarch64-poky-linux-
-	oe_runmake PLAT=hpsc bl31
-}
 
 OUTPUT_DIR = "${B}/build/hpsc/release"
 
@@ -43,5 +40,3 @@ do_deploy() {
 }
 
 addtask deploy before do_build after do_compile
-
-PV = "1.3-hpsc+git${SRCPV}"
