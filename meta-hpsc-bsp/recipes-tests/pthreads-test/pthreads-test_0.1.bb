@@ -1,16 +1,18 @@
-SUMMARY = "Simple code to test Pthreads"
-LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+SUMMARY = "Pthreads test application"
+LICENSE = "BSD-3-Clause"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/BSD-3-Clause;md5=550794465ba0ec5312d6919e203a55f9"
 
-TEST_FILES_DIR = "${WORKDIR}/../../../../../../../src/meta-hpsc/meta-hpsc-bsp/lib/oeqa/files/"
+TEST_NAME = "count_pthreads"
+
+SRC_URI = "file://${TEST_NAME}.c"
 
 do_compile() {
-	     ${CC} -pthread ${TEST_FILES_DIR}/count_pthreads.c -o ${TEST_FILES_DIR}/count_pthreads
-}
-
-# do_package() and do_install() are empty since the compiled code doesn't go into the rootfs
-do_package() {
+    ${CC} ${CFLAGS} -pthread ${WORKDIR}/${TEST_NAME}.c ${LDFLAGS} -o ${TEST_NAME}
 }
 
 do_install() {
+    install -d ${D}/opt/${PN}
+    install -m 755 ${TEST_NAME} ${D}/opt/${PN}/
 }
+
+FILES_${PN} = "/opt/${PN}/*"

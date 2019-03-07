@@ -1,0 +1,6 @@
+{
+    "test_pthreads": {
+        "pkg": "pthreads-test",
+        "rm": true
+    }
+}

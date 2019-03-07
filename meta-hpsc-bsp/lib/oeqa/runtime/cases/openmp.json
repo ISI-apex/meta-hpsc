@@ -1,0 +1,6 @@
+{
+    "test_openmp": {
+        "pkg": "openmp-test",
+        "rm": true
+    }
+}
