@@ -8,7 +8,7 @@ PROVIDES = "virtual/arm-trusted-firmware"
 PV = "1.3-hpsc+git${SRCPV}"
 
 SRC_URI = "git://github.com/ISI-apex/arm-trusted-firmware.git;protocol=git;branch=hpsc"
-SRCREV = "5c1a87f3b606ac2bc60b3c9d243c6c15ba55a967"
+SRCREV = "d6dc7ef1f6e0e9b07fd29748aafb41899a7fdcdf"
 
 S = "${WORKDIR}/git"
 
