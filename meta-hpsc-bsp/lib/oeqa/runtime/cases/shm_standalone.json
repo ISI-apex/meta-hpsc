@@ -1,0 +1,10 @@
+{
+    "test_simple": {
+        "pkg": "hpsc-utils",
+        "rm": true
+    },
+    "test_offset": {
+        "pkg": "hpsc-utils",
+        "rm": true
+    }
+}
