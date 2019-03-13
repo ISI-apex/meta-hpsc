@@ -1,0 +1,6 @@
+{
+    "test_mpi": {
+        "pkg": "mpi-test",
+        "rm": true
+    }
+}
