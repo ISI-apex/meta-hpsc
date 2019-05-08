@@ -1,12 +1,12 @@
 SUMMARY = "Runtime tests for HPSC Linux kernel drivers"
 
 LICENSE = "BSD-3-Clause"
-LIC_FILES_CHKSUM = "file://README.md;md5=ec328c2895c886ed4b309e9ca669d7c5"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=31263657a5fe16df5a0253ff7163b8b3"
 
 PV = "0.1+git${SRCPV}"
 
 SRC_URI = "git://github.com/ISI-apex/hpsc-utils.git;protocol=git;branch=hpsc"
-SRCREV = "5d259ecb960a4acf7dd950bfe1fb1ea423c86a73"
+SRCREV = "7b89e9668ab52584bbffcd28d4caf9858c597ec8"
 
 S = "${WORKDIR}/git"
 
@@ -20,14 +20,14 @@ TESTS += " \
     "
 
 do_compile() {
-    oe_runmake -C linux
+    oe_runmake -C test/linux
 }
 
 do_install() {
     install -d ${D}/opt/${PN}
     for test in ${TESTS}
     do
-        install -m 755 linux/${test} ${D}/opt/${PN}/
+        install -m 755 test/linux/${test} ${D}/opt/${PN}/
     done
 }
 
