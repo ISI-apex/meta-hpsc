@@ -8,5 +8,10 @@ Dependencies
 
 This layer depends on:
 
-* poky (Yocto)
-* meta-openembedded (meta-oe, meta-python)
+URI: git://git.yoctoproject.org/poky
+layers: meta, meta-poky, meta-yocto-bsp
+branch: thud
+
+URI: git://git.openembedded.org/meta-openembedded
+layers: meta-oe
+branch: thud
