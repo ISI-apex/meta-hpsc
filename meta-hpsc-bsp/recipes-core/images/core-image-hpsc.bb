@@ -19,7 +19,7 @@ HPSC_IMAGE_INSTALL ?= " gdb gdbserver \
                         openssh openssh-sftp-server \
                         perf \
                         python-core python-numpy \
-			qemu \
+                        qemu \
                         util-linux \
                         watchdog \
                         "
