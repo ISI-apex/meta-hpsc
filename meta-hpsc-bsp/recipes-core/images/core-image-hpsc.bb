@@ -18,7 +18,7 @@ HPSC_IMAGE_INSTALL ?= " gdb gdbserver \
                         nas-parallel-benchmarks \
                         openssh openssh-sftp-server \
                         perf \
-                        python-core python-numpy \
+                        python3-core python3-numpy \
                         qemu \
                         util-linux \
                         watchdog \
