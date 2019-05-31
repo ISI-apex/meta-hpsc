@@ -12,9 +12,7 @@ HPSC_IMAGE_INSTALL ?= " gdb gdbserver \
                         libgomp \
                         libstdc++ \
                         mpich \
-                        mtd-utils \
-                        mtd-utils-ubifs \
-                        mtd-utils-misc \
+                        mtd-utils mtd-utils-misc mtd-utils-ubifs \
                         nas-parallel-benchmarks \
                         openssh openssh-sftp-server \
                         perf \
