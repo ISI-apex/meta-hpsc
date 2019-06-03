@@ -16,8 +16,7 @@ IMAGE_FEATURES += "eclipse-debug"
 # This variable may be overridden, hence kept separate from IMAGE_INSTALL
 HPSC_IMAGE_INSTALL ?= " \
                         libgfortran \
-                        libgomp \
-                        libstdc++ \
+                        libgomp libstdc++ \
                         mpich \
                         mtd-utils mtd-utils-misc mtd-utils-ubifs \
                         nas-parallel-benchmarks \
