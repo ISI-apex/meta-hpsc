@@ -17,6 +17,7 @@ IMAGE_FEATURES += "eclipse-debug"
 HPSC_IMAGE_INSTALL ?= " \
                         libgfortran \
                         libgomp libstdc++ \
+                        hpsc-utils \
                         mpich \
                         mtd-utils mtd-utils-misc mtd-utils-ubifs \
                         nas-parallel-benchmarks \
