@@ -8,7 +8,7 @@ DEPENDS += "bc-native dtc-native flex-native bison-native"
 PV = "2018.11-rc1-hpsc+git${SRCPV}"
 
 SRC_URI = "git://github.com/ISI-apex/u-boot.git;protocol=git;branch=hpsc"
-SRCREV = "9e738d5d82ce2e4b315ff5b3bcc030666744b001"
+SRCREV = "d148f6fb8e457c6f27acbb9896203908712934c8"
 
 S = "${WORKDIR}/git"
 
