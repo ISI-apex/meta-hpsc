@@ -2,7 +2,7 @@ inherit kernel
 require recipes-kernel/linux/linux-yocto.inc
 
 SRC_URI = "git://github.com/ISI-apex/linux-hpsc.git;protocol=git;branch=hpsc"
-SRCREV = "c43bb3f680fd4fdafdf9183570847dc3b950cc04"
+SRCREV = "8b6042ae1e00d0a382aaf8e64ca30edf9c02099d"
 
 LINUX_VERSION ?= "4.14.0"
 
