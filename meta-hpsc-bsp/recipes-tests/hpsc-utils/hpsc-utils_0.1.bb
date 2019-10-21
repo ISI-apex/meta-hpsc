@@ -6,12 +6,16 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=31263657a5fe16df5a0253ff7163b8b3"
 PV = "0.1+git${SRCPV}"
 
 SRC_URI = "git://github.com/ISI-apex/hpsc-utils.git;protocol=git;branch=hpsc"
-SRCREV = "024d3fbde6d9dacaa6ade8e73ae73c4dace94cf9"
+SRCREV = "972ad823a608c27605f74f4eb292468bf1c23e98"
 
 S = "${WORKDIR}/git"
 
 TESTS += " \
+    dma-tester.sh \
+    interrupt-affinity-tester.sh \
+    mbox-multiple-core-tester \
     mboxtester \
+    parallel-app-tester.sh \
     rtit-tester \
     rtit-tester.sh \
     shm-standalone-tester \
