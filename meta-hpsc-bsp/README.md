@@ -10,8 +10,8 @@ This layer depends on:
 
 	URI: git://git.yoctoproject.org/poky
 	layers: meta, meta-poky, meta-yocto-bsp
-	branch: thud
+	branch: warrior
 
 	URI: git://git.openembedded.org/meta-openembedded
 	layers: meta-oe
-	branch: thud
+	branch: warrior
