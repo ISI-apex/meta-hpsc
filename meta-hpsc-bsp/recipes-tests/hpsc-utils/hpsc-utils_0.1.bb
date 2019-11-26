@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=31263657a5fe16df5a0253ff7163b8b3"
 PV = "0.1+git${SRCPV}"
 
 SRC_URI = "git://github.com/ISI-apex/hpsc-utils.git;protocol=git;branch=hpsc"
-SRCREV = "972ad823a608c27605f74f4eb292468bf1c23e98"
+SRCREV = "44eea3d12cfc79c9ebeb81de84e11152cb25f5f9"
 
 S = "${WORKDIR}/git"
 
@@ -20,6 +20,7 @@ TESTS += " \
     rtit-tester.sh \
     shm-standalone-tester \
     shm-tester \
+    sram-tester \
     wdtester \
     "
 
