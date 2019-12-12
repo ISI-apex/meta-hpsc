@@ -15,7 +15,6 @@ TESTS += " \
     interrupt-affinity-tester.sh \
     mbox-multiple-core-tester \
     mboxtester \
-    parallel-app-tester.sh \
     rtit-tester \
     rtit-tester.sh \
     shm-standalone-tester \
