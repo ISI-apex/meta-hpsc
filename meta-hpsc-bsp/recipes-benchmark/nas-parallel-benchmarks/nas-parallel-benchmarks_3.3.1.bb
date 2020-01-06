@@ -29,7 +29,7 @@ S = "${WORKDIR}/NPB${PV}"
 SECURITY_CFLAGS = ""
 
 do_compile() {
-        for model in SER OMP
+        for model in SER OMP MPI
         do
                 cd "NPB3.3-${model}"
                 # By running sys first, we can use parallel make for everything else
@@ -40,7 +40,7 @@ do_compile() {
 }
 
 do_install() {
-        for model in SER OMP
+        for model in SER OMP MPI
         do
                 cd "NPB3.3-${model}"
                 mdir="${D}/opt/${PN}/NPB${PV}-${model}/bin"
