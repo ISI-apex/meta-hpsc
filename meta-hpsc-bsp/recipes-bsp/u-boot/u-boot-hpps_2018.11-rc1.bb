@@ -3,7 +3,7 @@ require recipes-bsp/u-boot/u-boot.inc
 
 PV = "2018.11-rc1-hpsc+git${SRCPV}"
 
-SRC_URI = "git://github.com/ISI-apex/u-boot.git;protocol=git;branch=hpsc-w-snap"
+SRC_URI = "git://github.com/ISI-apex/u-boot.git;protocol=git;branch=hpsc"
 SRCREV = "e8b5885c10360daca5ca8d28f4a0810aee6b42f0"
 
 # Default value for deployment filenames.
