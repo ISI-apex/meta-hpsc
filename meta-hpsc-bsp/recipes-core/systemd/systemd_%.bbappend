@@ -1,13 +1,13 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/${BPN}:"
+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
-NETWORKING_SCRIPTS ?= "file://wired.network"
-SRC_URI += "${NETWORKING_SCRIPTS}"
+SRC_URI += "file://systemd/network/wired.network \
+	    file://systemd/system.conf.d/timeout.conf \
+	    file://systemd/system/systemd-hwdb-update.service.d/timeout.conf"
 
 do_install_append() {
 	if [ "${@bb.utils.contains('IMAGE_CLASSES', 'qemuboot', 'True', 'False' ,d)}" != "True" ]; then
-		install -d ${D}${sysconfdir}/systemd/network/
-		install -m 0644 ${WORKDIR}/*.network ${D}${sysconfdir}/systemd/network/
+		# could 'find . -exec install' but need to cd; cp -R allowed by OpenEmbedded
+		cp -R --no-dereference --preserve=mode,links -v \
+			${WORKDIR}/systemd/ ${D}${sysconfdir}/
 	fi
 }
-
-FILES_${PN} += "{sysconfdir}/systemd/network/*"
