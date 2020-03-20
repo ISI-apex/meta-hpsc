@@ -7,15 +7,15 @@ PROVIDES = "virtual/arm-trusted-firmware"
 
 PV = "1.3-hpsc+git${SRCPV}"
 
-SRC_URI = "git://github.com/ISI-apex/arm-trusted-firmware.git;protocol=git;branch=hpsc"
-SRCREV = "29f510a1179436b648aaf5ce7879e941b3fcf31d"
+SRC_URI = "git://github.com/ISI-apex/arm-trusted-firmware.git;protocol=git;branch=hpsc-w-snap"
+SRCREV = "a7bb92cd4d8b62c75a9374451d8d2cdcd83f3a1e"
 
 S = "${WORKDIR}/git"
 
 inherit deploy
 
 COMPATIBLE_MACHINE = "hpsc-chiplet"
-PLATFORM_hpsc-chiplet = "hpsc"
+PLATFORM_hpsc-chiplet = "hpsc_hpps"
 
 # Let the Makefile handle setting up the CFLAGS and LDFLAGS as it is a standalone application
 CFLAGS[unexport] = "1"
@@ -29,7 +29,7 @@ EXTRA_OEMAKE = "PLAT=${PLATFORM} bl31"
 ATF_BASE_NAME ?= "${PN}-${PKGE}-${PKGV}-${PKGR}-${DATETIME}"
 ATF_BASE_NAME[vardepsexclude] = "DATETIME"
 
-OUTPUT_DIR = "${B}/build/hpsc/release"
+OUTPUT_DIR = "${B}/build/${PLATFORM}/release"
 
 do_deploy() {
 	install -d ${DEPLOYDIR}
