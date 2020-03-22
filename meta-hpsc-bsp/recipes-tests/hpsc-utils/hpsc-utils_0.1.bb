@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=31263657a5fe16df5a0253ff7163b8b3"
 PV = "0.1+git${SRCPV}"
 
 SRC_URI = "git://github.com/ISI-apex/hpsc-utils.git;protocol=git;branch=hpsc"
-SRCREV = "c87770673a8f1db2d0e2769d81b20653286755ed"
+SRCREV = "1d38f5899656fc85a8a96dd57bcf6999f1d1d42c"
 
 S = "${WORKDIR}/git"
 
@@ -25,7 +25,7 @@ TESTS += " \
     "
 
 do_compile() {
-    oe_runmake -C test/linux
+    oe_runmake -C test/linux DO_STRIP=0
 }
 
 do_install() {
