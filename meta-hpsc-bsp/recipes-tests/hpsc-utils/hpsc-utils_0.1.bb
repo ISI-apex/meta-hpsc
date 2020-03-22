@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=31263657a5fe16df5a0253ff7163b8b3"
 PV = "0.1+git${SRCPV}"
 
 SRC_URI = "git://github.com/ISI-apex/hpsc-utils.git;protocol=git;branch=hpsc"
-SRCREV = "0393b4a8f9110b4d5ce037c64acd46889890de21"
+SRCREV = "c87770673a8f1db2d0e2769d81b20653286755ed"
 
 S = "${WORKDIR}/git"
 
